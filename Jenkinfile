@@ -1,27 +1,23 @@
-pipeline{
-  agent any
+pipeline {
+    agent any
 
-  stages{
-    stage('Checkout'){
-      steps{
-        git branch: "main", url:"https://github.com/mthd-mca/test_jen"
-      }
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: "main", url: "https://github.com/mthd-mca/test_jen"
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo "Building...."
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo "Testing...."
+            }
+        }
     }
-
- stage('Build'){
-      steps{
-        echo "Building...."
-      }
-
-  }
-
-stage('Test'){
-      steps{
-        echo "Testing...."
-      }
-
-  }
-
-  }
- 
 }
