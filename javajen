@@ -1,39 +1,38 @@
-pipeline{
-  agent any
+pipeline {
+    agent any
 
-    tools{
-      jdk "jdk21"
+    tools {
+        jdk "jdk21"
     }
 
-  stages{
-    stage('Checkout'){
-      stage{
-       git branch:"main", url:"https://github.com/mthd-mca/test_jen"
-      }  
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/mthd-mca/test_jen'
+            }
+        }
+
+        stage('Compile') {
+            steps {
+                echo "Compiling Java program"
+                sh 'javac Hello.java'
+            }
+        }
+
+        stage('Run') {
+            steps {
+                echo "Running a Java program...."
+                sh 'java Hello'
+            }
+        }
     }
 
-    stage('complie'){
-      step{
-        echo "Compiling java program"
-        sh 'javac Hello.java'
-      }
-    }    
-
-   stage('Run'){
-     steos{
-       echo "Running a java program...."
-       sh "java Hello"
-     }
-   }
+    post {
+        success {
+            echo "Build and execution successful"
+        }
+        failure {
+            echo "Build failed"
+        }
+    }
 }
-
-post{
-  success{
-    echo "Build and execution successful"
-  }
-failure{
-  echo "Build failed"
-}
-}
-  }
-
