@@ -23,7 +23,8 @@ pipeline {
             steps {
                 echo "Running a Java program...."
                 sh 'java Hello'
-                sh 'python test.py'
+                sh 'python3 test.py'
+
             }
         }
     }
